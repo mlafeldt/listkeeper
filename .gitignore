@@ -1,0 +1,10 @@
+*.d.ts
+.env*
+.eslintcache
+.vercel
+bin
+build
+cdk.context.json
+cdk.out
+node_modules
+outputs.json

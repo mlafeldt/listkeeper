@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  [multiple],
+  [type='date'],
+  [type='datetime-local'],
+  [type='email'],
+  [type='month'],
+  [type='number'],
+  [type='password'],
+  [type='search'],
+  [type='tel'],
+  [type='text'],
+  [type='time'],
+  [type='url'],
+  [type='week'],
+  select,
+  textarea {
+    @apply appearance-none;
+    @apply bg-white;
+    @apply border-gray-500;
+    @apply border;
+    @apply rounded-none;
+    @apply py-2 px-3;
+    @apply text-base;
+  }
+
+  ::selection {
+    @apply bg-yellow-200 text-gray-800;
+  }
+
+  /*****************************************************************************
+   * Buttons
+   ****************************************************************************/
+
+  .btn {
+    @apply bg-green-500;
+    @apply border-transparent;
+    @apply rounded-md;
+    @apply border;
+    @apply inline-flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply font-bold;
+    @apply text-sm;
+    @apply py-2 px-5;
+    @apply text-white;
+    @apply transition;
+  }
+
+  .btn:not(:disabled):focus {
+    @apply outline-none ring;
+  }
+
+  .btn:not(:disabled):hover {
+    @apply bg-green-400;
+  }
+
+  .btn:not(:disabled):active {
+    @apply bg-green-600;
+  }
+
+  .btn:disabled {
+    @apply opacity-75;
+  }
+
+  .btn-md {
+    @apply py-2 px-4 text-sm;
+  }
+
+  .btn-lg {
+    @apply py-4 px-6 text-base;
+  }
+
+  .btn-red {
+    @apply bg-red-500;
+  }
+
+  .btn-red:not(:disabled):focus {
+    @apply outline-none ring;
+  }
+
+  .btn-red:not(:disabled):hover {
+    @apply bg-red-400;
+  }
+
+  .btn-red:not(:disabled):active {
+    @apply bg-red-600;
+  }
+
+  /*****************************************************************************
+   * Toggle
+   ****************************************************************************/
+
+  .toggle {
+    @apply relative block h-5 w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none;
+  }
+
+  .toggle-checked {
+    @apply bg-green-500;
+  }
+
+  .toggle-switch {
+    @apply block h-4 w-4 translate-x-0 transform rounded-full bg-white shadow transition duration-200 ease-in-out;
+  }
+
+  .toggle-switch-checked {
+    @apply translate-x-5;
+  }
+
+  /*****************************************************************************
+   * Form input
+   ****************************************************************************/
+
+  .form-input {
+    @apply block rounded-md border border-gray-300;
+  }
+
+  .form-input:focus {
+    @apply border-blue-300 outline-none ring ring-blue-200 ring-opacity-50;
+  }
+
+  .form-input:disabled {
+    @apply bg-gray-200 text-gray-500;
+  }
+
+  @media (min-width: 640px) {
+    .form-input {
+      @apply text-sm;
+    }
+  }
+}

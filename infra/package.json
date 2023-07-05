@@ -1,0 +1,24 @@
+{
+  "name": "infra",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "echo ok"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-amplify-alpha": "2.67.0-alpha.0",
+    "aws-cdk-lib": "2.67.0",
+    "constructs": "10.1.270",
+    "source-map-support": "0.5.21"
+  },
+  "devDependencies": {
+    "@aws-appsync/utils": "1.2.4",
+    "@types/node": "18.15.11",
+    "aws-cdk": "2.67.0",
+    "esbuild": "0.17.11",
+    "ts-node": "10.9.1",
+    "typescript": "5.0.4"
+  }
+}

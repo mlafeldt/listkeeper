@@ -1,0 +1,45 @@
+version: 1
+
+backend:
+  phases:
+    preBuild:
+      commands:
+        - echo + Installing Go
+        - curl -fsSL https://golang.org/dl/go1.17.linux-amd64.tar.gz | tar -xzf- -C /usr/local
+        - export PATH=/usr/local/go/bin:$PATH
+        - export GOBIN=/usr/local/bin
+        - go env
+
+        - echo + Installing gox
+        - go install github.com/mitchellh/gox@latest
+
+        - echo + Installing golangci-lint
+        - curl -fsSL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $GOBIN v1.44.0
+
+        - echo + Installing gotest
+        - curl -fsSL https://gotest-release.s3.amazonaws.com/gotest_linux > $GOBIN/gotest
+        - chmod +x $GOBIN/gotest
+
+        - yarn --cwd infra install --frozen-lockfile
+    build:
+      commands:
+        - make lint test diff deploy ENV=$APP_ENV V=1 HOTSWAP=
+
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - cd $CODEBUILD_SRC_DIR/listkeeper/app
+        - yarn install --frozen-lockfile
+    build:
+      commands:
+        - yarn lint
+        - GENERATE_SOURCEMAP=false yarn build
+  artifacts:
+    baseDirectory: app/build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - app/node_modules/**/*
+      - infra/node_modules/**/*

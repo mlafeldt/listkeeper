@@ -1,0 +1,25 @@
+linters:
+  enable-all: true
+  disable:
+    - exhaustivestruct
+    - funlen
+    - gochecknoglobals
+    - godox
+    - goerr113
+    - ireturn
+    - lll
+    - nlreturn
+    - paralleltest
+    - testpackage
+    - varnamelen
+    - wrapcheck
+    - wsl
+    # deprecated linters
+    - golint
+    - interfacer
+    - maligned
+    - scopelint
+
+linters-settings:
+  gci:
+    local-prefixes: github.com/mlafeldt/listkeeper

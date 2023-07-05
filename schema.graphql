@@ -1,0 +1,79 @@
+type Query {
+  getUser(id: ID!): User @aws_api_key @aws_oidc
+  getLatestFollowerEvents(userId: ID!): [FollowerEvent!] @aws_api_key @aws_oidc
+  ping: String! @aws_api_key
+}
+
+type Mutation {
+  registerUser(id: ID!): User @aws_api_key @aws_oidc
+  updateUser(id: ID!, input: UpdateUserInput!): User @aws_api_key @aws_oidc
+  deleteUser(id: ID!): ID @aws_api_key
+}
+
+type User @aws_api_key @aws_oidc {
+  id: ID!
+  handle: String!
+  name: String!
+  location: String
+  bio: String
+  profileImageUrl: AWSURL!
+  slack: SlackConfig!
+  ignoreFollowers: [String!]
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  lastLogin: AWSDateTime!
+}
+
+type SlackConfig @aws_api_key @aws_oidc {
+  enabled: Boolean!
+  webhookUrl: AWSURL
+  channel: String
+}
+
+input UpdateUserInput {
+  slack: SlackInput
+  ignoreFollowers: [String!]
+}
+
+input SlackInput {
+  enabled: Boolean!
+  webhookUrl: AWSURL
+  channel: String
+}
+
+type Follower @aws_api_key @aws_oidc {
+  id: ID!
+  handle: String
+  name: String
+  location: String
+  bio: String
+  profileImageUrl: AWSURL
+  protected: Boolean!
+  totalFollowers: Int!
+}
+
+type FollowerEvent @aws_api_key @aws_oidc {
+  id: ID!
+  totalFollowers: Int!
+  follower: Follower!
+  followerState: FollowerState!
+  followerStateReason: FollowerStateReason!
+  createdAt: AWSDateTime!
+}
+
+enum FollowerState {
+  NEW
+  LOST
+}
+
+enum FollowerStateReason {
+  FOLLOWED
+  UNFOLLOWED
+  DELETED
+  SUSPENDED
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}

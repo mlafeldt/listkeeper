@@ -1,0 +1,10 @@
+# https://benoitboure.com/how-to-use-typescript-with-appsync-lambda-resolvers
+scalar AWSDate
+scalar AWSDateTime
+scalar AWSEmail
+scalar AWSIPAddress
+scalar AWSJSON
+scalar AWSPhone
+scalar AWSTime
+scalar AWSTimestamp
+scalar AWSURL
