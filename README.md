@@ -78,4 +78,6 @@ Due to Twitter's API rate limiting, Listkeeper will only work reliably for users
 
 ## License
 
+Copyright (c) 2020-2023 Mathias Lafeldt
+
 Listkeeper is licensed under the [Apache License, Version 2.0](LICENSE).
